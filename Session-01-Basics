@@ -1,1 +1,138 @@
+# What is a Database?
+A database is an organized collection of data.
+Example:
+1. Student records
+2. Employee details
+3. Orders in a store
+4. Movie cast and crew
+
+# What is DBMS (Database Management System)?
+A DBMS is software that helps us:
+1. Store data
+2. Retrieve data
+3. Update data
+4. Manage security
+Examples: MySQL, Oracle, SQL Server
+
+## Logic:
+- Database = Data
+- DBMS = Tool to manage the data
+
+# What is SQL?
+SQL (Structured Query Language) is the language used to communicate with the DBMS(which is used to manage the data).
+
+We use SQL to:
+1. Create databases
+2. Create tables
+3. Insert data
+4. Query data
+5. Control access
+
+# What is a Schema?
+A schema is a logical container inside a database that organizes tables.
+
+Example:
+company_db.test_table
+
+## company_db → database/schema
+## test_table → table
+
+# Types of SQL Commands
+Type -	Full Form -	Purpose:
+DDL -	Data Definition Language - Structure
+DML -	Data Manipulation Language -	Work with data
+DQL -	Data Query Language -	Retrieve data
+DCL -	Data Control Language -	Permissions
+TCL -	Transaction Control Language - Save/rollback changes
+
+# DDL — Data Definition Language
+- Used to define structure.
+
+1. CREATE DATABASE
+- CREATE DATABASE company_db;
+Creates a new database.
+
+*  CREATE TABLE
+- CREATE TABLE company_db.test_table (
+  id INT,
+  name VARCHAR(100)
+);
+Creates a table with columns and data types.
+
+2.  ALTER TABLE
+- Used to modify structure.
+Example:
+ALTER TABLE company_db.test_table ADD Email VARCHAR(255);
+ALTER TABLE company_db.test_table RENAME COLUMN Email TO email_id;
+
+3.  DROP TABLE
+- Deletes table permanently.
+
+4.  TRUNCATE
+- Removes all rows but keeps structure.
+
+# DML — Data Manipulation Language
+- Used to work with data.
+
+1. INSERT
+INSERT INTO company_db.test_table (id, name)
+VALUES (1, 'Alice');
+
+
+2. Adds rows.
+You inserted: (5, 5)
+MySQL converts number 5 to string automatically because column is VARCHAR.
+
+3. DELETE
+- DELETE FROM company_db.test_table WHERE id = 1;
+Removes specific rows.
+
+# DQL — Data Query Language
+- SELECT * FROM company_db.test_table;
+Used to retrieve data.
+
+CONSTRAINTS (Data Rules)
+- Constraints enforce data integrity.
+1. NOT NULL
+Column must have a value.
+
+2.  UNIQUE
+No duplicate values allowed.
+
+# PRIMARY KEY
+- ADD PRIMARY KEY (ID);
+* Uniquely identifies each row 
+* Cannot be NULL
+* Only one per table
+
+# FOREIGN KEY
+- Connects two tables.
+- FOREIGN KEY (PersonID) REFERENCES Persons(ID)
+
+# Logic:
+Child table must reference existing parent value.
+Rules You Used:
+- ON DELETE RESTRICT → cannot delete parent if child exists
+- ON UPDATE CASCADE → child updates automatically
+
+# CHECK Constraint
+Age INT CHECK (Age >= 18)
+
+- Only allows valid values.
+
+# DEFAULT
+city VARCHAR(255) DEFAULT 'new york'
+
+- If no value given → default used.
+
+DROP vs DELETE vs TRUNCATE
+Command -	Removes -	Can Rollback - Structure
+DELETE - Selected rows -	Yes -	Stays
+TRUNCATE -	All rows - No -	Stays
+DROP -	Entire table -	No -	Deleted
+
+# TCL (Concept Only)
+Used to manage transactions:
+1. COMMIT → save changes
+2. ROLLBACK → undo changes
 
