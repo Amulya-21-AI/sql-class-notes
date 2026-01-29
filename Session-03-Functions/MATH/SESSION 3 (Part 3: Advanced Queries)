@@ -1,0 +1,95 @@
+STRING FUNCTIONS (Revision Level)
+You already know basics. Here you're using them for data analysis.
+
+1. SUBSTRING
+- Extracts part of text.
+SUBSTRING(title, 1, 3)
+
+2. CONCAT
+- Joins strings.
+CONCAT(first_name, '@ ', last_name)
+
+3. LENGTH Filter
+- WHERE LENGTH(title) > 15
+Used for filtering long titles.
+
+4. LOCATE + SUBSTRING
+- Finds email domain.
+LOCATE('@', email)
+SUBSTRING(email, position+1)
+
+5. SUBSTRING_INDEX
+- Split text based on delimiter.
+substring_index(email,'@', -1)
+
+6. Pattern Matching with REGEXP
+Pattern -	Meaning
+[aeiou]$ -	Ends with vowel
+[^aeiou]{3} -	3 consecutive consonants
+
+7. MATH OPERATIONS
+rental_rate * 2
+SUM(amount)
+AVG = SUM/COUNT
+
+# Creating Calculated Columns
+ALTER TABLE sakila.film ADD COLUMN cost_efficiency DECIMAL(6,2);
+UPDATE sakila.film SET cost_efficiency = replacement_cost / length;
+
+8. DATE FUNCTIONS
+- DATEDIFF(return_date, rental_date)
+- DATE(payment_date)
+- NOW() - INTERVAL 1 DAY
+Used for time-based filtering.
+ 
+9. SUBQUERIES (VERY IMPORTANT)
+A query inside another query.
+- Subquery in WHERE
+WHERE amount > (SELECT AVG(amount) FROM sakila.payment)
+Used for comparison with aggregated results.
+
+10. Subquery with IN
+- WHERE actor_id IN (
+    SELECT actor_id FROM sakila.film_actor GROUP BY actor_id HAVING COUNT(*) > 10
+)
+
+11. Subquery in SELECT
+SELECT actor_id,
+ (SELECT COUNT(*) FROM film_actor WHERE film_actor.actor_id = actor.actor_id) AS film_count
+FROM actor;
+- Adds calculated column.
+
+12. DERIVED TABLES
+- Subquery used as a temporary table.
+FROM (SELECT actor_id, COUNT(*) AS film_count FROM film_actor GROUP BY actor_id) fa
+
+13. CORRELATED SUBQUERY
+- Runs once for every outer row.
+WHERE p2.customer_id = p1.customer_id
+
+JOINS
+- Used to combine tables.
+INNER JOIN
+- Only matching rows.
+LEFT JOIN
+- All left table rows + matches.
+
+FULL OUTER JOIN (MySQL workaround)
+- LEFT JOIN
+- UNION
+- RIGHT JOIN
+
+SELF JOIN
+- Table joins with itself.
+
+EXISTS
+- Checks if related rows exist.
+
+ORDER OF EXECUTION
+- SQL actually runs like this:
+
+FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY
+
+
+
+
