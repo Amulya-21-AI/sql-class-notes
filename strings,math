@@ -1,0 +1,125 @@
+PART 1 — STRING FUNCTIONS
+
+Used to manipulate text data (names, titles, emails).
+
+1. LPAD & RPAD (Padding)
+- LPAD(title, 20, '*')
+- RPAD(title, 20, '*')
+
+Meaning
+- Adds characters to make a string a fixed length.
+
+Logic
+- Used for formatting outputs in reports.
+
+2. SUBSTRING
+- SUBSTRING(title, 1, 9)
+Extracts part of text.
+Syntax Logic:
+- SUBSTRING(column, start_position, length)
+
+3. CONCAT
+-CONCAT(first_name, '.', last_name)
+Joins multiple strings.
+
+4. REVERSE
+- REVERSE(title)
+Flips text backwards.
+
+5. LENGTH
+- LENGTH(title)
+Counts number of characters.
+Used for filtering based on size.
+
+6. Extracting Email Domain
+- SUBSTRING(email, LOCATE('@', email) + 1)
+Logic Steps
+Find @
+Extract everything after it
+
+7. SUBSTRING_INDEX
+- SUBSTRING_INDEX(email,'@',1)
+Gets part before @
+
+8. UPPER / LOWER
+- Convert text case.
+- Used for case-insensitive searches.
+
+9. LEFT & RIGHT
+- LEFT(title,2)
+- RIGHT(title,3)
+Extract characters from start/end.
+
+10. CASE (Conditional Logic)
+- CASE WHEN condition THEN result END
+Works like IF-ELSE.
+
+11. REPLACE
+- REPLACE(title,'A','x')
+Replaces characters.
+
+12. REGEXP (Pattern Matching)
+Pattern -	Meaning
+[aeiou]$ -	Ends with vowel
+{3} -	Exactly 3 repetitions
+- Used for advanced filtering.
+
+## PART 2 — MATH FUNCTIONS
+- Used for calculations.
+
+Important: ^ in MySQL
+- rental_rate ^ 3
+^ is bitwise XOR, not power.
+
+Use:
+- POWER(rental_rate,3)
+
+Aggregates
+- SUM(amount)
+  COUNT(payment_id)
+  AVG = SUM/COUNT
+Used with GROUP BY.
+
+RAND
+- Generates random numbers.
+
+MOD
+- Remainder after division.
+
+CEIL / FLOOR
+- Round up / round down.
+
+ROUND
+- Controls decimal precision.
+
+## PART 3 — DATE FUNCTIONS
+- Used for time-based analysis.
+
+DATEDIFF
+- DATEDIFF(return_date, rental_date)
+Finds number of days between dates.
+
+Extract Date Parts
+Function -	Purpose
+YEAR() -	Extract year
+DAYNAME() -	Day of week
+MONTHNAME() -	Month name
+
+NOW vs CURDATE
+Function -	Output
+NOW()	- Date + Time
+CURDATE() -	Date only
+
+INTERVAL
+- NOW() - INTERVAL 1 DAY
+Used for recent data filtering.
+
+PART 4 — TYPE CASTING
+CAST:
+- CAST(amount AS CHAR)
+- CAST('2017-08-25' AS DATETIME)
+Converts data types.
+
+MySQL Auto Conversion
+- amount_str + 10
+MySQL tries to convert text to number automatically.
